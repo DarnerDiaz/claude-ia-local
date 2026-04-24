@@ -1,0 +1,113 @@
+# Entorno virtual Python
+.venv/
+venv/
+ENV/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# MLX específico
+~/.local/mlx-server/
+~/.local/mlx-native-server/
+~/.local/browser-agent/
+~/.local/bin/speak
+
+# Modelos descargados (~18-75 GB - grandes)
+models/
+*.safetensors
+*.bin
+*.gguf
+
+# IDE y editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.sublime-project
+.sublime-workspace
+
+# Logs y archivos temporales
+*.log
+logs/
+tmp/
+temp/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Secrets y config local
+.env
+.env.local
+.env*.local
+secrets.json
+config.local.json
+~/.claude.json (local)
+~/.claude/
+
+# Archivos de cache de git
+.git/objects/pack/*.keep
+
+# Node modules (si es que usas npm)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Compilados de Swift
+.swiftpm/
+.build/
+*.xcodeproj/
+
+# AppleScript compilado
+*.scpt
+
+# Resultados de tests locales (no versionar)
+test-results/
+coverage/
+
+# Archivos de respaldo
+*.bak
+*.backup
+*~
+
+# Almacenamiento local de datos sensibles
+data/
+backups/
+*.db
+*.sqlite3
+
+# Certificados y keys (nunca versionar!)
+*.pem
+*.key
+*.crt
