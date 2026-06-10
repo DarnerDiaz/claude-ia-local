@@ -2,12 +2,16 @@
 # Download a model from the lineup directly into the MLX virtualenv.
 #
 # Usage:
-#   bash scripts/download-and-import.sh                  # default Gemma 4 31B
-#   bash scripts/download-and-import.sh qwen             # Qwen 3.5 122B
-#   bash scripts/download-and-import.sh llama            # Llama 3.3 70B
-#   MLX_MODEL=<hf-id> bash scripts/download-and-import.sh
+#   bash scripts/descargar-e-importar.sh                  # default Gemma 4 31B
+#   bash scripts/descargar-e-importar.sh qwen             # Qwen 3.5 122B
+#   bash scripts/descargar-e-importar.sh llama            # Llama 3.3 70B
+#   MLX_MODEL=<hf-id> bash scripts/descargar-e-importar.sh
+#   MODELO_MLX=<hf-id> bash scripts/descargar-e-importar.sh   # alias en español
 
 set -e
+
+# Acepta MODELO_MLX como alias en español de MLX_MODEL / accept Spanish alias.
+MLX_MODEL="${MLX_MODEL:-${MODELO_MLX:-}}"
 
 MLX_PYTHON="${MLX_PYTHON:-$HOME/.local/mlx-server/bin/python3}"
 
@@ -18,6 +22,10 @@ if [ ! -x "$MLX_PYTHON" ]; then
 fi
 
 case "${1:-}" in
+  phi|phi3|mini)
+    MODEL="${MLX_MODEL:-mlx-community/Phi-3-mini-4k-instruct-4bit}"
+    LABEL="Phi-3 Mini 4-bit (THE TINY ONE — ~2 GB, corre en Macs de 8 GB)"
+    ;;
   qwen|qwen122|122b)
     MODEL="${MLX_MODEL:-mlx-community/Qwen3.5-122B-A10B-4bit}"
     LABEL="Qwen 3.5 122B (THE BEAST — 65 tok/s, ~75 GB RAM)"
@@ -53,4 +61,4 @@ PY
 
 echo ""
 echo "=== DONE! Start the server with:"
-echo "    MLX_MODEL=$MODEL bash scripts/start-mlx-server.sh"
+echo "    MLX_MODEL=$MODEL bash scripts/iniciar-servidor-mlx.sh"

@@ -11,7 +11,7 @@ source "$SCRIPT_DIR/lib/claude-local-common.sh"
 CLAUDE_BIN="${CLAUDE_BIN:-$HOME/.local/bin/claude}"
 
 # Override with MLX_MODEL=<your-path-or-hf-id>. Prefers a local flat-folder
-# cache if you already downloaded the model via scripts/download-and-import.sh,
+# cache if you already downloaded the model via scripts/descargar-e-importar.sh,
 # so mlx-lm loads directly from disk instead of re-pulling from HF.
 MLX_MODEL_DEFAULT="$(resolve_mlx_model \
   "$HOME/.cache/huggingface/hub/gemma-4-31b-it-abliterated-4bit-mlx" \

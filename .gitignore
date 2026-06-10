@@ -27,6 +27,11 @@ share/python-wheels/
 *.egg
 MANIFEST
 
+# Excepción: scripts/lib/ es código fuente del proyecto, NO un dir de venv.
+# (la regla `lib/` de arriba es para entornos virtuales de Python)
+!scripts/lib/
+!scripts/lib/*
+
 # MLX específico
 ~/.local/mlx-server/
 ~/.local/mlx-native-server/

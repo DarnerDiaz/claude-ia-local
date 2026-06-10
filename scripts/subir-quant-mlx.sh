@@ -4,14 +4,14 @@
 # for the plain Python path).
 #
 # Usage:
-#   bash scripts/upload-mlx-quant.sh <local-folder> <hf-repo-id>
+#   bash scripts/subir-quant-mlx.sh <local-folder> <hf-repo-id>
 #
 # Examples:
-#   bash scripts/upload-mlx-quant.sh \
+#   bash scripts/subir-quant-mlx.sh \
 #     ~/.cache/huggingface/hub/gemma-4-31b-it-abliterated-4bit-mlx \
 #     divinetribe/gemma-4-31b-it-abliterated-4bit-mlx
 #
-#   bash scripts/upload-mlx-quant.sh ./my-quant divinetribe/my-quant
+#   bash scripts/subir-quant-mlx.sh ./my-quant divinetribe/my-quant
 #
 # Requirements:
 #   - You must be logged in:  hf auth login   (or have HF_TOKEN exported)
@@ -23,8 +23,8 @@ LOCAL_DIR="${1:-}"
 REPO_ID="${2:-}"
 
 if [ -z "$LOCAL_DIR" ] || [ -z "$REPO_ID" ]; then
-  echo "usage: bash scripts/upload-mlx-quant.sh <local-folder> <hf-repo-id>"
-  echo "example: bash scripts/upload-mlx-quant.sh ~/my-quant divinetribe/my-quant"
+  echo "usage: bash scripts/subir-quant-mlx.sh <local-folder> <hf-repo-id>"
+  echo "example: bash scripts/subir-quant-mlx.sh ~/my-quant divinetribe/my-quant"
   exit 1
 fi
 
@@ -108,7 +108,7 @@ print(generate(model, tokenizer, prompt="Hello", max_tokens=200))
 Or via the launcher / setup script in [nicedreamzapp/claude-code-local](https://github.com/nicedreamzapp/claude-code-local):
 
 \`\`\`bash
-MLX_MODEL={repo} bash scripts/start-mlx-server.sh
+MLX_MODEL={repo} bash scripts/iniciar-servidor-mlx.sh
 \`\`\`
 """
 
@@ -147,4 +147,4 @@ PY
 
 echo ""
 echo "=== Done. Add it to your lineup with:"
-echo "    MLX_MODEL=$REPO_ID bash scripts/start-mlx-server.sh"
+echo "    MLX_MODEL=$REPO_ID bash scripts/iniciar-servidor-mlx.sh"
