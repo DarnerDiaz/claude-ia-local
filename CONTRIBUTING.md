@@ -102,16 +102,38 @@ git push origin feature/descriptive-name
 
 ## Guías Específicas
 
-### Si editaste `proxy/server.py`
+### Si editaste el servidor (`proxy/server.py` + paquete `proxy/mlx_server/`)
 
-- **Líneas máximo:** Trata de mantenerlo en ~1000 líneas
-- **Tests:** Corre `scripts/test_mlx_server.py` para verificar
+El servidor está modularizado. `server.py` es solo el arranque; la lógica vive
+en `proxy/mlx_server/`:
+
+| Módulo | Responsabilidad | ¿Importa MLX? |
+|--------|-----------------|:---:|
+| `config.py` | Configuración (env vars) + `log()` | No |
+| `text_cleaning.py` | Limpia el output del modelo | No |
+| `tool_calls.py` | Conversión y parsing de tool-calls + recuperación | No |
+| `messages.py` | Conversión de mensajes Anthropic + tokenización | No |
+| `modes.py` | Detección de sesión code/browser + prompts | No |
+| `metrics.py` | Recolector de métricas (thread-safe, acotado) | No |
+| `dashboard.py` | HTML del panel de observabilidad | No |
+| `model_loader.py` | Carga del modelo MLX + chat template | Sí |
+| `generation.py` | Pipeline de inferencia + prompt cache + reintentos | Sí |
+| `http_app.py` | Handler HTTP de la Messages API + /dashboard, /metrics | No |
+
 - **Comentarios:** Agrega si es lógica nueva no obvia
 - **Breaking changes:** Documenta en CHANGELOG
+- **Tests:**
+  - **Unitarios (rápidos, sin modelo):** `scripts/probar-funciones-puras.py` cubre
+    la lógica pura (parsing de tool-calls, limpieza, conversión, modos). Corre con
+    cualquier `python3`. Si tocas un módulo "No importa MLX", añade/actualiza su test aquí.
+  - **End-to-end (necesita servidor corriendo):** `scripts/probar-servidor-mlx.py`.
 
 ```bash
-# Probar localmente
-~/.local/mlx-server/bin/python scripts/test_mlx_server.py
+# Tests unitarios (no requieren modelo ni MLX)
+python3 scripts/probar-funciones-puras.py
+
+# Test end-to-end (con el servidor MLX corriendo en :4000)
+~/.local/mlx-server/bin/python scripts/probar-servidor-mlx.py
 ```
 
 ### Si editaste un launcher (`.command`)

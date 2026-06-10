@@ -68,6 +68,20 @@ MLX_BROWSER_MODE=1 bash scripts/iniciar-servidor-mlx.sh
 /Applications/Brave\ Browser.app/Contents/MacOS/Brave --remote-debugging-port=9222
 ```
 
+### Panel de Observabilidad (Dashboard)
+
+Con el servidor corriendo, abre en el navegador:
+
+```
+http://localhost:4000/dashboard
+```
+
+Muestra en vivo (refresca cada 2 s): modelo cargado, tok/s promedio, requests,
+cache hit rate, tool-calls por herramienta, **recuperaciones de tool-calls
+corruptos**, reintentos, errores y un feed de actividad reciente.
+
+Datos crudos en JSON: `curl http://localhost:4000/metrics`
+
 ### Debug Verboso
 
 ```bash
@@ -249,7 +263,7 @@ done
 2. **Symlink setup.sh** — edita `proxy/server.py` en el repo, se refleja automáticamente
 3. **Prompt caching** — segundo request es 8-10× más rápido
 4. **MLX_TOOL_RETRIES** — aumenta si tienes tool-calls garbled frecuentes
-5. **test suite** — corre `python3 scripts/test_mlx_server.py` después de cambios
+5. **test suite** — corre `python3 scripts/probar-servidor-mlx.py` después de cambios
 
 ---
 
