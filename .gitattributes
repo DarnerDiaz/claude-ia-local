@@ -1,0 +1,24 @@
+# Normaliza saltos de línea. Evita que Google Drive / editores en Windows
+# rompan los scripts shell con CRLF (un `\r` invisible hace que bash falle).
+# Normalize line endings — prevents CRLF from breaking shell scripts.
+
+# Por defecto: detecta texto y guárdalo con LF en el repo.
+* text=auto eol=lf
+
+# Archivos ejecutables: SIEMPRE LF (CRLF los rompe en macOS/Linux).
+*.sh      text eol=lf
+*.py      text eol=lf
+*.command text eol=lf
+*.json    text eol=lf
+
+# Documentación: LF también, por consistencia.
+*.md      text eol=lf
+
+# Binarios: nunca tocar.
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.pdf     binary
+*.safetensors binary
+*.gguf    binary
